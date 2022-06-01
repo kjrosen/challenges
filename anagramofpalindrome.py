@@ -37,12 +37,9 @@ def is_anagram_of_palindrome(word):
     for letter in word:
         word_dict[letter] = word_dict.get(letter, 0) + 1
 
-    evens = 0
     odds = 0
     for cnt in word_dict.values():
-        if cnt % 2 == 0:
-            evens += 1
-        else:
+        if cnt % 2 != 0:
             odds += 1
     
     if odds > 1:
