@@ -27,8 +27,26 @@ def binary_search(val):
 
     assert 0 < val < 101, "Val must be between 1-100"
 
-    num_guesses = 0
+    nums = list(range(1,101))
+    num_guesses = 1
 
+    max = len(nums) - 1
+    min = 0
+    mid = (max + min)//2
+    
+    guess = nums[mid]
+
+    while guess != val:
+        num_guesses += 1
+
+        if val > guess:
+            min = mid
+        else:
+            max = mid
+
+        mid = (min + max)//2
+        guess = nums[mid]
+        
     return num_guesses
 
 
