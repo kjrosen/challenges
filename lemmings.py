@@ -31,6 +31,21 @@ Find the farthest any single lemming needs to travel for food.
 
     >>> furthest_optimized(6, [2, 4])
     2
+
+    >>> furthest_optimiziest(7, [0, 6])
+    3
+
+    >>> furthest_optimiziest(3, [0, 1, 2])
+    0
+
+    >>> furthest_optimiziest(3, [2])
+    2
+
+    >>> furthest_optimiziest(3, [0])
+    2
+
+    >>> furthest_optimiziest(6, [2, 4])
+    2
 """
 
 
@@ -70,25 +85,40 @@ def furthest_optimized(num_holes, cafes):
         idx = bisect_left(cafes, hole)
 
         ## if index is after all cafes, closest is the last cafe
-        if idx == len(num_holes):
-            pass
+        if idx == len(cafes):
+            dist = hole - cafes[-1]
     
         ## if index is before all cafes, closest is the first cafe
         elif idx == 0:
-            pass
+            dist = cafes[0] - hole
 
         ## if the index IS the hole, no travel necessary
         elif cafes[idx] == hole:
-            pass
+            dist = 0
 
         ## else the hole is between two cafes
         # find difference to get distance to both, then take the shorter as closest
         else:
-            pass
+            dist = min(hole - cafes[idx-1], cafes[idx] - hole)
+
+        max_travel = max(dist, max_travel)
+
+    return max_travel
 
 
+def furthest_optimiziest(num_holes, cafes):
+    """find the distance between the cafes rather than the holes"""
 
+    distances = [cafes[0], (num_holes - 1) - cafes[-1]]
 
+    ##find the distance between each cafe
+    # split in half
+    for idx in range(1, len(cafes)):
+        distances.append(
+            (cafes[idx] - cafes[idx-1]) // 2
+        )
+
+    return max(distances)
 
 
         
