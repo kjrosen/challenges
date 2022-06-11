@@ -35,11 +35,15 @@ Find the farthest any single lemming needs to travel for food.
 
 
 def furthest(num_holes, cafes):
-    """Find longest distance between a hole and a cafe."""
+    """Find longest distance between a hole and a cafe.
+    
+    find difference between each hole and each cafe
+    """
 
     max_distance = 0
 
     for hole in range(num_holes):
+        ## begin by assuming closest cafe is fully across the chain
         closest = num_holes
 
         for cafe in cafes:
@@ -52,10 +56,40 @@ def furthest(num_holes, cafes):
 
 
 def furthest_optimized(num_holes, cafes):
-    """
+    """use a binary search and bisect to 
     """
 
     from bisect import bisect_left
+
+    max_travel = 0
+
+    for hole in range(num_holes):
+
+        ##bisect_left returns the index where hole would go
+        # if hole were added to the sorted list that is cafes
+        idx = bisect_left(cafes, hole)
+
+        ## if index is after all cafes, closest is the last cafe
+        if idx == len(num_holes):
+            pass
+    
+        ## if index is before all cafes, closest is the first cafe
+        elif idx == 0:
+            pass
+
+        ## if the index IS the hole, no travel necessary
+        elif cafes[idx] == hole:
+            pass
+
+        ## else the hole is between two cafes
+        # find difference to get distance to both, then take the shorter as closest
+        else:
+            pass
+
+
+
+
+
 
         
 
