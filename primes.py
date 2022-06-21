@@ -16,44 +16,43 @@ For example::
 
 """
 
+def is_prime(num):
+    """checks if a number is prime"""
+
+    from math import sqrt
+
+    if num < 2:
+        return False
+    elif num == 2:
+        return True
+    elif num % 2 == 0:
+        return False
+    elif int(sqrt(num)) == sqrt(num):
+        return False
+        
+    n = 3
+
+    while n * n <= num:
+        if num % n == 0:
+            return False
+        n += 2
+
+    return True
+
 
 def primes(count):
     """Return count number of prime numbers, starting at 2."""
 
-    from math import sqrt
+    primes = []
+    num = 2
 
-    primes = [2, 3, 5, 7, 11]
+    while count > 0:
+        if is_prime(num):
+            primes.append(num)
+            count -= 1
 
-    if count == 0:
-        return []
-    elif count < 5:
-        return primes[:count]
-    elif count == 5:
-        return primes
+        num += 1
 
-    else:
-        to_check = primes[-1] + 1
-
-        while len(primes) < count:
-            is_prime = False
-
-            square = sqrt(to_check)
-
-            if int(square) == square:
-                pass
-
-            for prime in primes:
-                if to_check % prime == 0:
-                    is_prime = False
-                    break
-                
-                is_prime = True
-            
-            if is_prime == True:
-                primes.append(to_check)
-
-            to_check += 1
-            
     return primes
 
 
