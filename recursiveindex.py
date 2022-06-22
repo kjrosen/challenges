@@ -29,14 +29,13 @@ def recursive_index(needle, haystack, checks=0):
     Do this with recursion. You MAY NOT USE A `for` OR `while` LOOP.
     """
 
-    if haystack:
-        if haystack[0] == needle:
-            return checks
-        
-        else:
-            return recursive_index(needle, haystack[1:], checks+1)
+    if checks == len(haystack):
+        return None
 
-    return None
+    elif haystack[checks] == needle:
+        return checks
+
+    return recursive_index(needle, haystack, checks+1)
 
 
 if __name__ == '__main__':
