@@ -22,6 +22,11 @@ For example::
 def print_digits(num):
     """Given int, print digits in reverse order, starting with the ones place."""
 
+    while num:
+        last_digit = num % 10
+        print(last_digit)
+        num = num // 10
+
 
 if __name__ == '__main__':
     import doctest
