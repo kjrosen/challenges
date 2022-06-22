@@ -20,6 +20,9 @@ Recursive solution doctest:
 """
 
 
+from flask import current_app
+
+
 class LinkedList(object):
     """Linked list."""
 
@@ -68,6 +71,31 @@ def reverse_linked_list_in_place(lst):
 
     current.next = prev
     lst.head = current
+
+
+def reverse_linked_list_in_place_rec(lst):
+    """reverses a linked list in place using recursion"""
+
+    prev, curr = None, lst.head
+    
+    def _reverse(curr, prev):
+
+        ## if current node == none, return previous node
+        if not curr:
+            return prev
+
+        ## save next, then set current next to previous
+        nxt = curr.next
+        curr.next = prev
+        ## move to next node
+        prev = curr
+        curr = nxt
+
+        ## repeat on next set of nodes
+        return _reverse(curr, prev)
+
+    lst.head = _reverse(curr, prev)
+
 
 
 if __name__ == '__main__':
